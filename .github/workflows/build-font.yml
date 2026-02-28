@@ -48,17 +48,17 @@ jobs:
         run: |
           cd iosevka-src
           npm install
-          npm run build -- contents::IoskeleyMono
+          npm run build -- contents::IoskeleyMonoCustom
           npm run build -- contents::IoskeleyQuasiProportional
 
       # 7. Verify build output exists for all formats
       - name: Verify build output
         run: |
-          if [ ! -d "iosevka-src/dist/IoskeleyMono/TTF" ] || [ ! -d "iosevka-src/dist/IoskeleyMono/WOFF2" ]; then
-            echo "IoskeleyMono build output directories (TTF and/or WOFF2) not found!"
+          if [ ! -d "iosevka-src/dist/IoskeleyMonoCustom/TTF" ] || [ ! -d "iosevka-src/dist/IoskeleyMonoCustom/WOFF2" ]; then
+            echo "IoskeleyMonoCustom build output directories (TTF and/or WOFF2) not found!"
             exit 1
           fi
-          echo "IoskeleyMono TTF and WOFF2 build directories verified."
+          echo "IoskeleyMonoCustom TTF and WOFF2 build directories verified."
           if [ ! -d "iosevka-src/dist/IoskeleyQuasiProportional/TTF" ] || [ ! -d "iosevka-src/dist/IoskeleyQuasiProportional/WOFF2" ]; then
             echo "IoskeleyQuasiProportional build output directories (TTF and/or WOFF2) not found!"
             exit 1
@@ -68,11 +68,11 @@ jobs:
       # 8. Create separate ZIP archives for Desktop and Web users
       - name: Package font files into separate archives
         run: |
-          # Package IoskeleyMono
-          cd iosevka-src/dist/IoskeleyMono
-          zip -r ../../../IoskeleyMono-TTF-Hinted.zip TTF
-          zip -r ../../../IoskeleyMono-TTF-Unhinted.zip TTF-Unhinted
-          zip -r ../../../IoskeleyMono-Web.zip WOFF2 WOFF2-Unhinted
+          # Package IoskeleyMonoCustom
+          cd iosevka-src/dist/IoskeleyMonoCustom
+          zip -r ../../../IoskeleyMonoCustom-TTF-Hinted.zip TTF
+          zip -r ../../../IoskeleyMonoCustom-TTF-Unhinted.zip TTF-Unhinted
+          zip -r ../../../IoskeleyMonoCustom-Web.zip WOFF2 WOFF2-Unhinted
           cd ../../..
 
           # Package IoskeleyQuasiProportional
@@ -95,19 +95,19 @@ jobs:
           body: |
             Automated build triggered by commit ${{ github.sha }}.
 
-            **IoskeleyMono (Monospace, No Ligations):**
-            - `IoskeleyMono-TTF-Hinted.zip`: Fonts with hinting. Best for most users on standard-resolution screens.
-            - `IoskeleyMono-TTF-Unhinted.zip`: Raw fonts without hinting. Preferred by some on high-DPI screens.
-            - `IoskeleyMono-Web.zip`: Contains all WOFF2 font files for web use (Hinted and Unhinted).
+            **IoskeleyMonoCustom (Monospace, No Ligations):**
+            - `IoskeleyMonoCustom-TTF-Hinted.zip`: Fonts with hinting. Best for most users on standard-resolution screens.
+            - `IoskeleyMonoCustom-TTF-Unhinted.zip`: Raw fonts without hinting. Preferred by some on high-DPI screens.
+            - `IoskeleyMonoCustom-Web.zip`: Contains all WOFF2 font files for web use (Hinted and Unhinted).
 
             **IoskeleyQuasiProportional (Quasi-Proportional, With Ligations):**
             - `IoskeleyQuasiProportional-TTF-Hinted.zip`: Fonts with hinting. Best for most users on standard-resolution screens.
             - `IoskeleyQuasiProportional-TTF-Unhinted.zip`: Raw fonts without hinting. Preferred by some on high-DPI screens.
             - `IoskeleyQuasiProportional-Web.zip`: Contains all WOFF2 font files for web use (Hinted and Unhinted).
           files: |
-            IoskeleyMono-TTF-Hinted.zip
-            IoskeleyMono-TTF-Unhinted.zip
-            IoskeleyMono-Web.zip
+            IoskeleyMonoCustom-TTF-Hinted.zip
+            IoskeleyMonoCustom-TTF-Unhinted.zip
+            IoskeleyMonoCustom-Web.zip
             IoskeleyQuasiProportional-TTF-Hinted.zip
             IoskeleyQuasiProportional-TTF-Unhinted.zip
             IoskeleyQuasiProportional-Web.zip
