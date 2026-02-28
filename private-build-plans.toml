@@ -196,7 +196,6 @@ spacing = "quasi-proportional"
 serifs = "sans"
 noCvSs = true
 exportGlyphNames = true
-noLigation = false
 
 [buildPlans.IoskeleyQuasiProportional.variants.design]
 one = "no-base"
